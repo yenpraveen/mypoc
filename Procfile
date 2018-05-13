@@ -1,1 +1,1 @@
-web: java -jar D:/Downloads/jar_files/webapp-runner-8.5.9.0.jar target/PBOService.war
+web: java -jar target/dependency/webapp-runner.jar target/PBOService.war

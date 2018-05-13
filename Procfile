@@ -1,1 +1,1 @@
-web: java -jar target/PBOService/WEB-INF/lib/webapp-runner-8.5.31.0.jar target/PBOService.war
+web: java $JAVA_OPTS -jar target/PBOService/WEB-INF/lib/webapp-runner-8.5.31.0.jar --port $PORT target/PBOService.war

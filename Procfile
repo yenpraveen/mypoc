@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar D:/Downloads/jar_files/webapp-runner-8.5.9.0.jar --port $PORT target/PBOService.war
+web: java -jar D:/Downloads/jar_files/webapp-runner-8.5.9.0.jar target/PBOService.war

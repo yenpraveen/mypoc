@@ -1,0 +1,124 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.arpit.java2blog</groupId>
+	<artifactId>PBOService</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>PBOService Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<!-- <dependencies> <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
+		<version>3.8.1</version> <scope>test</scope> </dependency> <dependency> <groupId>javax.servlet</groupId> 
+		<artifactId>javax.servlet-api</artifactId> <version>3.1.0</version> </dependency> 
+		<dependency> <groupId>org.springframework</groupId> <artifactId>spring-core</artifactId> 
+		<version>${spring.version}</version> </dependency> <dependency> <groupId>org.springframework</groupId> 
+		<artifactId>spring-webmvc</artifactId> <version>${spring.version}</version> 
+		</dependency> <dependency> <groupId>com.fasterxml.jackson.core</groupId> 
+		<artifactId>jackson-databind</artifactId> <version>2.4.1</version> </dependency> 
+		</dependencies> <build> <finalName>PBOService</finalName> <plugins> <plugin> 
+		<groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
+		<version>3.1</version> <configuration> <source>${jdk.version}</source> <target>${jdk.version}</target> 
+		</configuration> </plugin> </plugins> </build> <properties> <spring.version>4.2.1.RELEASE</spring.version> 
+		<jdk.version>1.7</jdk.version> </properties> -->
+
+
+	<properties>
+		<springframework.version>4.3.0.RELEASE</springframework.version>
+		<jackson.library>2.8.7</jackson.library>
+		<hsqldb.version>2.3.2</hsqldb.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.library}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+			<version>5.0.6</version>
+		</dependency>
+
+		<!-- Java Mail API -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.2</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<warSourceDirectory>src/main/webapp</warSourceDirectory>
+						<warName>PBOService</warName>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<finalName>PBOService</finalName>
+	</build>
+
+
+</project>

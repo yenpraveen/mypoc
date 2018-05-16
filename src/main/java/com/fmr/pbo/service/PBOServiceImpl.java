@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.fmr.pbo.entity.LocateRequest;
@@ -18,6 +20,7 @@ import com.fmr.pbo.entity.LocateResponse;
 import com.fmr.pbo.entity.LongPosition;
 import com.fmr.pbo.entity.ShortPosition;
 import com.fmr.pbo.entity.TickerDetail;
+import com.fmr.pbo.util.PBOServiceConstants;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -314,7 +317,7 @@ public class PBOServiceImpl implements PBOService {
 
 		TickerDetail tickerDetail = new TickerDetail();
 		tickerDetail.setTicker(ticker);
-		tickerDetail.setAttibute(attribute);
+		tickerDetail.setAttribute(attribute);
 
 		try {
 			Class.forName("org.hsqldb.jdbc.JDBCDriver");
@@ -322,8 +325,8 @@ public class PBOServiceImpl implements PBOService {
 			e1.printStackTrace();
 		}
 		try (Connection connection = DriverManager.getConnection("jdbc:hsqldb:mem:dataSource", "sa", "")) {
-
-			String sql = "SELECT " + attribute + " FROM TB_ALEXA_PBO_TIC_DET WHERE TICKER = ?";
+			String attributeDesc = attribute+"_DESC";
+			String sql = "SELECT " + attribute +","+attributeDesc+ ",SEC_DESC FROM TB_ALEXA_PBO_TIC_DET WHERE TICKER = ?";
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setString(1, ticker);
 
@@ -331,6 +334,8 @@ public class PBOServiceImpl implements PBOService {
 
 			while (resultSet.next()) {
 				tickerDetail.setValue(resultSet.getString(attribute));
+				tickerDetail.setTickerDesc(resultSet.getString("SEC_DESC"));
+				tickerDetail.setAttributeDesc(resultSet.getString(attributeDesc));
 			}
 			
 
@@ -338,6 +343,42 @@ public class PBOServiceImpl implements PBOService {
 			e.printStackTrace();
 		} 
 		return tickerDetail;
+	}
+	
+	@Override
+	public String sendReport(String type) {
+		String result = "Success";
+		try {
+			
+			ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Mail.xml");
+			MailMail mm = (MailMail) context.getBean("mailMail");
+			
+			switch (type) {
+			
+			case PBOServiceConstants.LONG_POSITIONS:
+				
+				/*result = createLongPositionReport();
+				if ("Success".equalsIgnoreCase(result)) {
+					mm.sendMail("", "Please find attached the Long Position Report",
+							"LongPosition.pdf");
+				}*/
+				mm.sendMail("", "Please find attached the Long Position Report",
+						"LongPosition.pdf");
+				break;
+
+			case PBOServiceConstants.SHORT_POSITIONS:
+				mm.sendMail("", "Please find attached the Short Position Report", "ShortPosition.pdf");
+				break;
+
+			default:
+				mm.sendMail("", "Please find attached the Long Position Report",
+						"LongPosition.pdf");
+
+			}
+		} catch (Exception e) {
+			result = "Failure";
+		}
+		return result;
 	}
 
 }

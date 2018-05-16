@@ -16,6 +16,8 @@ public interface PBOService {
 	public List<ShortPosition> getShortPosition(String ticker,String broker);
 	
 	public String createLongPositionReport();
+	
+	public String sendReport(String type);
 
 	public List<LocateResponse> getLocate();
 

@@ -3,12 +3,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
 		<property name="username" value="omgomathi@gmail.com" />
-		<property name="password" value="" />
+		<property name="password" value="Thiruvasagam5" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.auth">true</prop>
@@ -30,7 +29,8 @@ http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 	<bean id="customeMailMessage" class="org.springframework.mail.SimpleMailMessage">
 
 		<property name="from" value="omgomathi@gmail.com" />
-		<property name="to" value="maulik.chandya@fmr.com,praveen.narayanasamy@fmr.com,selvarathinam.kannappan@fmr.com,gomathi.rameshbabu@fmr.com,sarang.garg@fmr.com" />
+		<!-- <property name="to" value="maulik.chandya@fmr.com,praveen.narayanasamy@fmr.com,selvarathinam.kannappan@fmr.com,gomathi.rameshbabu@fmr.com,sarang.garg@fmr.com" /> -->
+		<property name="to" value="praveen.narayanasamy@fmr.com,gomathi.rameshbabu@fmr.com" />
 		<property name="subject" value="Report" />
 		<!-- <property name="text" value="Please find attached the report" /> -->
 		 <property name="text">
